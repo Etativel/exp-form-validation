@@ -33,7 +33,7 @@ class UsersStorage {
     let newData = Object.values(this.storage);
 
     return newData.filter((user) =>
-      user.firstName
+      (user.firstName + " " + user.lastName)
         .split(" ")
         .some((word) => word.toLowerCase().startsWith(lowerQuery))
     );
