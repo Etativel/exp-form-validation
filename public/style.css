@@ -4,10 +4,16 @@
   box-sizing: border-box;
 }
 
+.update-user-form,
 .create-user-form {
   display: flex;
   flex-direction: column;
   width: 320px;
   margin-left: 12px;
   gap: 12px;
+}
+
+.display-container {
+  display: flex;
+  flex-direction: column;
 }

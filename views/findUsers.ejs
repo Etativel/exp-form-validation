@@ -1,16 +1,15 @@
 <html>
   <head>
-    <title><%= title %></title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1><%= title %></h1>
+    <h1>User search</h1>
     <form action="/search" method="get">
       <input type="text" placeholder="username" name="user" />
       <button type="submit">Find</button>
     </form>
     <ul>
-      <% if (locals.users) {%> <% users.forEach(user => { %>
+      <% users.forEach(user => { %>
       <li>
         <div class="display-container">
           <span> ID: <%= user.id %> </span>
@@ -33,8 +32,8 @@
           </button>
         </form>
       </li>
-
-      <% }); %> <% } %>
+      <% }); %>
+      <!-- Correct closing of forEach loop -->
     </ul>
     <a href="/create">Create a user</a>
   </body>

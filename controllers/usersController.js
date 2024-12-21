@@ -22,8 +22,8 @@ exports.usersUpdateGet = (req, res) => {
 };
 
 exports.usersCreatePost = (req, res) => {
-  const { firstName, lastName, email } = req.body;
-  usersStorage.addUser({ firstName, lastName, email });
+  const { firstName, lastName, email, age, bio } = req.body;
+  usersStorage.addUser({ firstName, lastName, email, age, bio });
   res.redirect("/");
 };
 
@@ -58,8 +58,8 @@ exports.usersCreatePost = [
         errors: errors.array(),
       });
     }
-    const { firstName, lastName, email } = req.body;
-    usersStorage.addUser({ firstName, lastName, email });
+    const { firstName, lastName, email, age, bio } = req.body;
+    usersStorage.addUser({ firstName, lastName, email, age, bio });
     res.redirect("/");
   },
 ];
@@ -76,8 +76,14 @@ exports.usersUpdatePost = [
         errors: errors.array(),
       });
     }
-    const { firstName, lastName, email } = req.body;
-    usersStorage.updateUser(req.params.id, { firstName, lastName, email });
+    const { firstName, lastName, email, age, bio } = req.body;
+    usersStorage.updateUser(req.params.id, {
+      firstName,
+      lastName,
+      email,
+      age,
+      bio,
+    });
     res.redirect("/");
   },
 ];
@@ -85,4 +91,14 @@ exports.usersUpdatePost = [
 exports.userDeletePost = (req, res) => {
   usersStorage.deleteUser(req.params.id);
   res.redirect("/");
+};
+
+exports.usersSearch = (req, res) => {
+  const { user } = req.query;
+  const findUsers = usersStorage.searchUser(user);
+  console.log(findUsers);
+  if (!findUsers) {
+    res.send("No user found");
+  }
+  res.render("findUsers", { users: findUsers });
 };

@@ -6,9 +6,9 @@ class UsersStorage {
     this.id = 0;
   }
 
-  addUser({ firstName, lastName, email }) {
+  addUser({ firstName, lastName, email, age, bio }) {
     const id = this.id;
-    this.storage[id] = { id, firstName, lastName, email };
+    this.storage[id] = { id, firstName, lastName, email, age, bio };
     this.id++;
   }
 
@@ -20,12 +20,23 @@ class UsersStorage {
     return this.storage[id];
   }
 
-  updateUser(id, { firstName, lastName, email }) {
-    this.storage[id] = { id, firstName, lastName, email };
+  updateUser(id, { firstName, lastName, email, age, bio }) {
+    this.storage[id] = { id, firstName, lastName, email, age, bio };
   }
 
   deleteUser(id) {
     delete this.storage[id];
+  }
+
+  searchUser(query) {
+    const lowerQuery = query.toLowerCase();
+    let newData = Object.values(this.storage);
+
+    return newData.filter((user) =>
+      user.firstName
+        .split(" ")
+        .some((word) => word.toLowerCase().startsWith(lowerQuery))
+    );
   }
 }
 // Rather than exporting the class, we can export an instance of the class by instantiating it.
