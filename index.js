@@ -1,11 +1,14 @@
 const express = require("express");
 const app = express();
-const PORT = "3000";
+const usersRouter = require("./routes/usersRouter");
+const path = require("path");
+const assetPath = path.join(__dirname, "public");
 
-app.get("/", (req, res) => {
-  res.send("Form Page");
-});
+app.use(express.static(assetPath));
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: true }));
 
-app.listen(PORT, (req, res) => {
-  console.log("App listen to port ", PORT);
-});
+app.use("/", usersRouter);
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Express app listening on port ${PORT}!`));

@@ -1,0 +1,22 @@
+<!-- views/createUser.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <%- include("partials/errors.ejs") %>
+    <form action="/create" method="POST" class="create-user-form">
+      <label for="firstName">First Name: </label>
+      <input type="text" name="firstName" id="firstName" />
+      <label for="lastName">Last Name: </label>
+      <input type="text" name="lastName" id="lastName" />
+      <label for="email">Email: </label>
+      <input type="email" name="email" id="email" />
+      <button type="submit">Submit</button>
+    </form>
+    <a href="/">Back to home</a>
+  </body>
+</html>
