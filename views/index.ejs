@@ -9,6 +9,10 @@
       <input required type="text" placeholder="username" name="user" />
       <button type="submit">Find</button>
     </form>
+    <form action="/search-user" method="get">
+      <input required type="text" placeholder="username" name="user" />
+      <button type="submit">DB Search</button>
+    </form>
     <ul>
       <% if (locals.users) {%> <% users.forEach(user => { %>
       <li>
