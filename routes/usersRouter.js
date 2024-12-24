@@ -13,4 +13,5 @@ usersRouter.post("/:id/update", usersController.usersUpdatePost);
 usersRouter.post("/:id/delete", usersController.userDeletePost);
 usersRouter.get("/db/user", dbController.getUsernames);
 usersRouter.get("/search-user", dbController.findUsername);
+usersRouter.get("/delete", dbController.deleteAllUsernamesHandler);
 module.exports = usersRouter;

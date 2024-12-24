@@ -29,9 +29,20 @@ async function findUsername(req, res) {
   );
 }
 
+async function deleteAllUsernamesHandler(req, res) {
+  try {
+    await db.deleteAllUsernames();
+    res.send("All users deleted");
+  } catch (error) {
+    console.error("Error deleting usernames:", error);
+    res.status(500).send("Failed to delete users");
+  }
+}
+
 module.exports = {
   getUsernames,
   createUsernameGet,
   createUsernamePost,
   findUsername,
+  deleteAllUsernamesHandler,
 };
