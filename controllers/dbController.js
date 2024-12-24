@@ -1,4 +1,5 @@
 const db = require("../db/queries");
+const { main } = require("../db/populatedb");
 
 async function getUsernames(req, res) {
   const usernames = await db.getAllUsernames();
@@ -39,10 +40,20 @@ async function deleteAllUsernamesHandler(req, res) {
   }
 }
 
+async function populateDb(req, res) {
+  try {
+    await main();
+    res.send("Database populated");
+  } catch (error) {
+    res.status(500).send("Failed to populate database");
+  }
+}
+
 module.exports = {
   getUsernames,
   createUsernameGet,
   createUsernamePost,
   findUsername,
   deleteAllUsernamesHandler,
+  populateDb,
 };

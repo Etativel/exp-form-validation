@@ -2,6 +2,7 @@
 const { Router } = require("express");
 const usersController = require("../controllers/usersController");
 const dbController = require("../controllers/dbController");
+
 const usersRouter = Router();
 
 usersRouter.get("/", usersController.usersListGet);
@@ -14,4 +15,5 @@ usersRouter.post("/:id/delete", usersController.userDeletePost);
 usersRouter.get("/db/user", dbController.getUsernames);
 usersRouter.get("/search-user", dbController.findUsername);
 usersRouter.get("/delete", dbController.deleteAllUsernamesHandler);
+usersRouter.get("/populate", dbController.populateDb);
 module.exports = usersRouter;
